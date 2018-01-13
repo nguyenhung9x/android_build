@@ -40,7 +40,7 @@ KERNEL_CROSS_COMPILE := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch6
 else ifeq ($(KERNEL_ARCH),arm)
 KERNEL_CROSS_COMPILE := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androidkernel-
 else
-$(error The target Kernel architecture is not supported)
+#$(error The target Kernel architecture is not supported)
 endif
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -97,7 +97,7 @@ KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 
 ifeq ($(TARGET_KERNEL_CONFIG)$(wildcard $(KERNEL_CONFIG)),)
-$(error A target Kernel configuration was not defined)
+#$(error A target Kernel configuration was not defined)
 else
 
 ifeq ($(TARGET_USES_UNCOMPRESSED_KERNEL),true)
