@@ -58,11 +58,6 @@ if __name__ == '__main__':
     except ValueError:
         device = product
 
-    dependencies_json_path %= device
-    if not os.path.isfile(dependencies_json_path):
-        raise ValueError('No dependencies file could be found for the device (%s).' % device)
-    dependencies = json.loads(open(dependencies_json_path, 'r').read())
-
     try:
         upstream_manifest = ET.parse(upstream_manifest_path).getroot()
     except (IOError, ET.ParseError):
@@ -111,13 +106,6 @@ if __name__ == '__main__':
                 if project.get('path') == path:
                     roomservice_manifest.remove(project)
                     break
-
-    # Make sure our <project> elements are set.
-    for dependency in dependencies:
-        path = dependency.get('target_path')
-        name = dependency.get('repository')
-        remote = dependency.get('remote')
-        revision = dependency.get('revision')
 
         # Make sure the required remote exists in the upstream manifest.
         found_remote = False
